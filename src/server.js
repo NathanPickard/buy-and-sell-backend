@@ -1,4 +1,4 @@
-import Hapi, { server } from '@hapi/hapi';
+import Hapi from '@hapi/hapi';
 import routes from './routes';
 import { db } from './database';
 
@@ -22,7 +22,7 @@ process.on('unhandledRejection', err => {
   process.exit(1);
 });
 
-process.on('SIGINT', () => {
+process.on('SIGINT', async () => {
   console.log('Stopping server...');
   await server.stop({ timeout: 10000 });
   db.end();
